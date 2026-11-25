@@ -1,0 +1,8 @@
+{
+  "name": "Remix Situation AI — Chat Intelligence Platform",
+  "description": "Understand every conversation and respond naturally. Advanced context-aware communication assistant with situation analysis, tone detection, and human-like reply generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
