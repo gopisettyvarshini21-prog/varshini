@@ -357,28 +357,42 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 Built for leaders, advisors, and graduate professionals handling high-stakes messages. Situation AI decodes tone, urgency, and hidden risk—then drafts calibrated replies and executive Word and PDF briefs in seconds.
               </p>
 
-              {/* High-Contrast 10% Accent Primary CTA + Quiet Secondary Anchor */}
-              <div className="flex flex-wrap items-center gap-4 pt-1">
+              {/* High-Contrast Primary Sign In + Login & Admin Portal Access */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <button
                   type="button"
                   onClick={() => onOpenAuthModal('user', null, 'signup')}
                   className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-sm font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/25 transition-all whitespace-nowrap shrink-0"
                 >
-                  <span>Start Writing Free</span>
+                  <span>Sign In</span>
                   <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
 
-                <a
-                  href="#solutions"
-                  className={`min-h-[48px] inline-flex items-center justify-center gap-1.5 px-5 py-3.5 rounded-xl text-sm font-semibold border transition-colors whitespace-nowrap shrink-0 ${
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('user', null, 'login')}
+                  className={`min-h-[48px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold border transition-colors whitespace-nowrap shrink-0 ${
                     isDark
                       ? 'border-slate-700 text-slate-200 hover:bg-slate-800/70'
                       : 'border-slate-300 text-slate-800 hover:bg-slate-100'
                   }`}
                 >
-                  <span>Explore Solutions</span>
-                  <ChevronRight className="w-4 h-4 shrink-0" />
-                </a>
+                  <User className="w-4 h-4 shrink-0" />
+                  <span>Login</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('admin', null, 'login')}
+                  className={`min-h-[48px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold border transition-colors whitespace-nowrap shrink-0 ${
+                    isDark
+                      ? 'border-purple-500/40 bg-purple-500/10 text-purple-300 hover:bg-purple-500/20'
+                      : 'border-purple-300 bg-purple-50 text-purple-700 hover:bg-purple-100'
+                  }`}
+                >
+                  <ShieldAlert className="w-4 h-4 shrink-0" />
+                  <span>Admin Portal</span>
+                </button>
               </div>
             </div>
 
@@ -409,7 +423,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Structured 3-Step Workflow Board Box */}
+          {/* Right Column: Structured 3-Step Workflow & Portal Access Board Box */}
           <div
             className={`lg:col-span-5 rounded-2xl p-6 sm:p-7 flex flex-col justify-between gap-5 ${boardBoxClass}`}
           >
@@ -422,16 +436,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div
+              className={`divide-y ${
+                isDark ? 'divide-slate-700/70' : 'divide-slate-200'
+              }`}
+            >
               {workflowBoardSteps.map((step) => (
                 <button
                   key={step.num}
                   type="button"
                   onClick={() => onOpenAuthModal('user', null, 'signup')}
-                  className={`w-full p-4 rounded-xl border text-left flex items-start gap-3.5 transition-colors ${
-                    isDark
-                      ? 'bg-[#12161F] border-slate-700/70 hover:border-blue-500/60'
-                      : 'bg-slate-50 border-slate-200 hover:border-blue-400'
+                  className={`w-full py-4 first:pt-1 last:pb-1 text-left flex items-start gap-3.5 transition-colors rounded-lg ${
+                    isDark ? 'hover:bg-slate-800/40' : 'hover:bg-slate-50/80'
                   }`}
                 >
                   <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${step.iconWrap}`}>
@@ -455,20 +471,38 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             <div
-              className={`pt-3.5 border-t flex items-center justify-between gap-2 text-xs ${
+              className={`pt-3.5 border-t flex flex-wrap items-center justify-between gap-2 text-xs ${
                 isDark ? 'border-slate-700/70' : 'border-slate-200'
               }`}
             >
               <span className={themeStyles.textMuted}>
-                Tone Radar · Multi-Persona · Brief Export
+                Direct Portal Access
               </span>
-              <button
-                type="button"
-                onClick={() => onOpenAuthModal('user', null, 'login')}
-                className="font-semibold text-blue-500 hover:underline whitespace-nowrap shrink-0"
-              >
-                Sign in →
-              </button>
+              <div className="flex items-center gap-3 whitespace-nowrap shrink-0">
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('user', null, 'login')}
+                  className="font-semibold text-blue-500 hover:underline"
+                >
+                  Login
+                </button>
+                <span aria-hidden="true" className={themeStyles.textMuted}>·</span>
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('user', null, 'signup')}
+                  className="font-semibold text-blue-500 hover:underline"
+                >
+                  Sign In
+                </button>
+                <span aria-hidden="true" className={themeStyles.textMuted}>·</span>
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('admin', null, 'login')}
+                  className="font-semibold text-purple-500 hover:underline"
+                >
+                  Admin Portal
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -571,21 +605,29 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
 
-              <div className={`flex items-center justify-center lg:justify-end gap-4 text-xs ${themeStyles.textMuted}`}>
+              <div className={`flex items-center justify-center lg:justify-end gap-3 text-xs whitespace-nowrap ${themeStyles.textMuted}`}>
                 <button
                   type="button"
                   onClick={() => onOpenAuthModal('user', null, 'login')}
                   className="hover:underline font-medium"
                 >
-                  Existing account sign in
+                  Login
+                </button>
+                <span aria-hidden="true">·</span>
+                <button
+                  type="button"
+                  onClick={() => onOpenAuthModal('user', null, 'signup')}
+                  className="hover:underline font-medium"
+                >
+                  Sign In
                 </button>
                 <span aria-hidden="true">·</span>
                 <button
                   type="button"
                   onClick={() => onOpenAuthModal('admin', null, 'login')}
-                  className="hover:underline font-medium"
+                  className="hover:underline font-medium text-purple-500"
                 >
-                  Admin access
+                  Admin Portal
                 </button>
               </div>
             </div>
